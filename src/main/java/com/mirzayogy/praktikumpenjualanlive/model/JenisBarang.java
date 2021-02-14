@@ -19,8 +19,22 @@ public class JenisBarang {
         this.id = id;
         this.namaJenisBarang = namaJenisBarang;
     }
-    
-    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNamaJenisBarang() {
+        return namaJenisBarang;
+    }
+
+    public void setNamaJenisBarang(String namaJenisBarang) {
+        this.namaJenisBarang = namaJenisBarang;
+    }
     
     
     
