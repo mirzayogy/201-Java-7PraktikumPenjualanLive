@@ -2,6 +2,8 @@ package com.mirzayogy.praktikumpenjualanlive.model;
 
 import com.mirzayogy.praktikumpenjualanlive.template.MyModelInterface;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
@@ -40,7 +42,21 @@ public class JenisBarang implements MyModelInterface{
 
     @Override
     public boolean create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean berhasil = false;
+        
+        String insertSQL = "INSERT INTO jenisbarang VALUES "
+                + "(NULL,?)";
+        
+        try {
+            PreparedStatement ps = this.con.prepareStatement(insertSQL);
+            ps.setString(1, this.namaJenisBarang);
+            ps.execute();
+            berhasil = true;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+        
+        return berhasil;
     }
 
     @Override
