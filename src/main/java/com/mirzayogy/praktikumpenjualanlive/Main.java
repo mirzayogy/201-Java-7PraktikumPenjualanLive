@@ -16,8 +16,12 @@ public class Main {
 //        jenisBarang.setNamaJenisBarang("TESTING namajenisbarang");
 //        jenisBarang.create();
 
-        ArrayList<Object> list = jenisBarang.read();
-        JenisBarang jb = (JenisBarang) list.get(1);
-        System.out.println(jb.getNamaJenisBarang());
+//        ArrayList<Object> list = jenisBarang.read();
+//        JenisBarang jb = (JenisBarang) list.get(1);
+//        System.out.println(jb.getNamaJenisBarang());
+
+        jenisBarang.setId(10);
+        jenisBarang.setNamaJenisBarang("Sepuluh");
+        jenisBarang.update();
     }
 }
