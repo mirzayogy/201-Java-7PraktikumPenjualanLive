@@ -112,7 +112,21 @@ public class JenisBarang implements MyModelInterface{
 
     @Override
     public boolean delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean berhasil = false;
+        
+        String deleteSQL = "DELETE FROM jenisbarang WHERE id = ?";
+        
+        try {
+            PreparedStatement ps = this.con.prepareStatement(deleteSQL);
+            ps.setInt(1, this.id);
+
+            ps.execute();
+            berhasil = true;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+        
+        return berhasil;
     }
 
     @Override
