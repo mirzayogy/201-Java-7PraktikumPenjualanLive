@@ -90,7 +90,24 @@ public class JenisBarang implements MyModelInterface{
 
     @Override
     public boolean update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        boolean berhasil = false;
+        
+        String updateSQL = "UPDATE jenisbarang SET "
+                + "namajenisbarang = ? WHERE id = ?";
+        
+        try {
+            PreparedStatement ps = this.con.prepareStatement(updateSQL);
+            ps.setString(1, this.namaJenisBarang);
+            ps.setInt(2, this.id);
+
+            ps.execute();
+            berhasil = true;
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+        
+        return berhasil;
     }
 
     @Override
