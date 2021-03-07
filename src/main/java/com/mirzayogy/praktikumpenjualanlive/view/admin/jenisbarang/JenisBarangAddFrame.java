@@ -5,13 +5,19 @@
  */
 package com.mirzayogy.praktikumpenjualanlive.view.admin.jenisbarang;
 
+import com.mirzayogy.praktikumpenjualanlive.model.JenisBarang;
+
 /**
  *
  * @author mirza
  */
 public class JenisBarangAddFrame extends javax.swing.JFrame {
 
-    
+    JenisBarang jenisBarang;
+
+    public void setJenisBarang(JenisBarang jenisBarang) {
+        this.jenisBarang = jenisBarang;
+    }
     
     public JenisBarangAddFrame() {
         initComponents();
