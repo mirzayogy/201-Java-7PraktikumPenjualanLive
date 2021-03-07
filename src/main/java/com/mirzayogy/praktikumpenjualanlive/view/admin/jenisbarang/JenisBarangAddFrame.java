@@ -6,12 +6,15 @@
 package com.mirzayogy.praktikumpenjualanlive.view.admin.jenisbarang;
 
 import com.mirzayogy.praktikumpenjualanlive.model.JenisBarang;
+import com.mirzayogy.praktikumpenjualanlive.template.AddFrameInterface;
+import com.mirzayogy.praktikumpenjualanlive.template.CustomFrame;
 
 /**
  *
  * @author mirza
  */
-public class JenisBarangAddFrame extends javax.swing.JFrame {
+public class JenisBarangAddFrame extends CustomFrame
+   implements AddFrameInterface{
 
     JenisBarang jenisBarang;
 
@@ -189,4 +192,19 @@ public class JenisBarangAddFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public boolean dataKosong() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void simpanTambah() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void simpanUbah() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
