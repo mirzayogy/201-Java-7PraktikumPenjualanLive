@@ -1,28 +1,10 @@
 package com.mirzayogy.praktikumpenjualanlive;
 
-import com.mirzayogy.praktikumpenjualanlive.db.Database;
-import com.mirzayogy.praktikumpenjualanlive.model.JenisBarang;
-import java.sql.Connection;
-import java.util.ArrayList;
+import com.mirzayogy.praktikumpenjualanlive.view.admin.jenisbarang.JenisBarangViewFrame;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world");
-        
-        Database db = new Database();
-        Connection con = db.getConnection();
-        
-        JenisBarang jenisBarang = new JenisBarang(con);
-//        jenisBarang.setNamaJenisBarang("TESTING namajenisbarang");
-//        jenisBarang.create();
-
-//        ArrayList<Object> list = jenisBarang.read();
-//        JenisBarang jb = (JenisBarang) list.get(1);
-//        System.out.println(jb.getNamaJenisBarang());
-
-        jenisBarang.setId(10);
-//        jenisBarang.setNamaJenisBarang("Sepuluh");
-//        jenisBarang.update();
-        jenisBarang.delete();
+        JenisBarangViewFrame frame = new JenisBarangViewFrame();
+        frame.customShow();
     }
 }
