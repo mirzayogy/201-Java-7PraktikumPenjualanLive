@@ -8,6 +8,7 @@ package com.mirzayogy.praktikumpenjualanlive.view.admin;
 import com.mirzayogy.praktikumpenjualanlive.model.Pengguna;
 import com.mirzayogy.praktikumpenjualanlive.template.CustomFrame;
 import com.mirzayogy.praktikumpenjualanlive.view.admin.jenisbarang.JenisBarangViewFrame;
+import com.mirzayogy.praktikumpenjualanlive.view.auth.ResetPasswordFrame;
 
 /**
  *
@@ -44,7 +45,7 @@ public class AdminMainFrame extends CustomFrame {
         btjenisBarang = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btUbahPassword = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -100,7 +101,12 @@ public class AdminMainFrame extends CustomFrame {
 
         jButton3.setText("Pengguna");
 
-        jButton4.setText("Ubah Password");
+        btUbahPassword.setText("Ubah Password");
+        btUbahPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUbahPasswordActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Laporan Penjualan");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +154,7 @@ public class AdminMainFrame extends CustomFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btjenisBarang)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4))
+                        .addComponent(btUbahPassword))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton7)
@@ -170,7 +176,7 @@ public class AdminMainFrame extends CustomFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btjenisBarang)
-                    .addComponent(jButton4))
+                    .addComponent(btUbahPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -220,6 +226,12 @@ public class AdminMainFrame extends CustomFrame {
         lbNamaLengkap.setText(pengguna.getNamaLengkap());
     }//GEN-LAST:event_formWindowActivated
 
+    private void btUbahPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUbahPasswordActionPerformed
+        ResetPasswordFrame frame = new ResetPasswordFrame();
+        frame.setPengguna(this.pengguna);
+        frame.customShow();
+    }//GEN-LAST:event_btUbahPasswordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -257,10 +269,10 @@ public class AdminMainFrame extends CustomFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btTutup;
+    private javax.swing.JButton btUbahPassword;
     private javax.swing.JButton btjenisBarang;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
