@@ -5,9 +5,12 @@
  */
 package com.mirzayogy.praktikumpenjualanlive.view.admin.jenisbarang;
 
+import com.mirzayogy.praktikumpenjualanlive.db.Database;
 import com.mirzayogy.praktikumpenjualanlive.model.JenisBarang;
 import com.mirzayogy.praktikumpenjualanlive.template.AddFrameInterface;
 import com.mirzayogy.praktikumpenjualanlive.template.CustomFrame;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,9 +41,9 @@ public class JenisBarangAddFrame extends CustomFrame
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        tfId = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tfNamaJenisBarang = new javax.swing.JTextField();
         btSimpan = new javax.swing.JButton();
         btBatal = new javax.swing.JButton();
 
@@ -71,10 +74,10 @@ public class JenisBarangAddFrame extends CustomFrame
 
         jLabel2.setText("Id");
 
-        jTextField1.setEditable(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        tfId.setEditable(false);
+        tfId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                tfIdActionPerformed(evt);
             }
         });
 
@@ -107,10 +110,10 @@ public class JenisBarangAddFrame extends CustomFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btSimpan))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1)
+                        .addComponent(tfId)
                         .addComponent(jLabel3)
                         .addComponent(jLabel2)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
+                        .addComponent(tfNamaJenisBarang, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,11 +123,11 @@ public class JenisBarangAddFrame extends CustomFrame
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfNamaJenisBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSimpan)
@@ -143,9 +146,9 @@ public class JenisBarangAddFrame extends CustomFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_btBatalActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void tfIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_tfIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,22 +192,51 @@ public class JenisBarangAddFrame extends CustomFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField tfId;
+    private javax.swing.JTextField tfNamaJenisBarang;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public boolean dataKosong() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (tfNamaJenisBarang.getText().equals("")) {
+        return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void simpanTambah() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String namaJenisBarang = tfNamaJenisBarang.getText();
+
+        Database db = new Database();
+        Connection con = db.getConnection();
+        jenisBarang = new JenisBarang(con);
+        jenisBarang.setNamaJenisBarang(namaJenisBarang);
+
+
+        if (jenisBarang.create()) {
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Data gagal disimpan");
+        }
     }
 
     @Override
     public void simpanUbah() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String id = tfId.getText();
+        int idInt = Integer.parseInt(id);
+        String namaJenisBarang = tfNamaJenisBarang.getText();
+
+        jenisBarang.setId(idInt);
+        jenisBarang.setNamaJenisBarang(namaJenisBarang);
+
+        if (jenisBarang.update()) {
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Data gagal diubah");
+        }
     }
 }
