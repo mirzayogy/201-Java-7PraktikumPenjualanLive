@@ -131,7 +131,30 @@ public class JenisBarang implements MyModelInterface{
 
     @Override
     public ArrayList<Object> search(String keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Object> list =  new ArrayList<>();
+    
+        String searchSQL = "SELECT * FROM jenisbarang WHERE namajenisbarang like ?";
+
+        keyword = "%"+keyword+"%";
+
+        try {
+            PreparedStatement ps = this.con.prepareStatement(searchSQL);
+            ps.setString(1, keyword);
+            ResultSet resultSet = ps.executeQuery();
+
+            while(resultSet.next()){
+                JenisBarang jb = new JenisBarang(
+                        resultSet.getInt(1),
+                        resultSet.getString(2)
+                );
+                list.add(jb);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+        }
+
+        return list;
     }
     
     
