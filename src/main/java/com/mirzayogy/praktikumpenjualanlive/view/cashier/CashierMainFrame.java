@@ -7,6 +7,7 @@ package com.mirzayogy.praktikumpenjualanlive.view.cashier;
 
 import com.mirzayogy.praktikumpenjualanlive.model.Pengguna;
 import com.mirzayogy.praktikumpenjualanlive.template.CustomFrame;
+import com.mirzayogy.praktikumpenjualanlive.view.auth.ResetPasswordFrame;
 
 /**
  *
@@ -41,7 +42,7 @@ public class CashierMainFrame extends CustomFrame {
         lbNamaLengkap = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btUbahPassword = new javax.swing.JButton();
         btTutup = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,7 +87,12 @@ public class CashierMainFrame extends CustomFrame {
 
         jButton2.setText("Riwayat Penjualan");
 
-        jButton3.setText("Ubah Password");
+        btUbahPassword.setText("Ubah Password");
+        btUbahPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUbahPasswordActionPerformed(evt);
+            }
+        });
 
         btTutup.setText("Tutup");
         btTutup.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +112,7 @@ public class CashierMainFrame extends CustomFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(btUbahPassword))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -122,7 +128,7 @@ public class CashierMainFrame extends CustomFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton3))
+                    .addComponent(btUbahPassword))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addGap(50, 50, 50)
@@ -139,6 +145,12 @@ public class CashierMainFrame extends CustomFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         lbNamaLengkap.setText(pengguna.getNamaLengkap());
     }//GEN-LAST:event_formWindowActivated
+
+    private void btUbahPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUbahPasswordActionPerformed
+        ResetPasswordFrame frame = new ResetPasswordFrame();
+        frame.setPengguna(this.pengguna);
+        frame.customShow();
+    }//GEN-LAST:event_btUbahPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,9 +189,9 @@ public class CashierMainFrame extends CustomFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btTutup;
+    private javax.swing.JButton btUbahPassword;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbNamaLengkap;
