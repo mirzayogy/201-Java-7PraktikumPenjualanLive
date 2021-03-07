@@ -218,11 +218,35 @@ public class JenisBarangViewFrame
     }//GEN-LAST:event_btCariActionPerformed
 
     private void btTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTambahActionPerformed
-        
+        JenisBarangAddFrame frame = new JenisBarangAddFrame();
+        frame.customShow();
     }//GEN-LAST:event_btTambahActionPerformed
 
     private void btUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUbahActionPerformed
-        
+        TableModel tableModel = tbJenisbarang.getModel();
+        int rowSelected = tbJenisbarang.getSelectedRow();
+
+        if (rowSelected >= 0) {
+
+            int id = (int) tableModel.getValueAt(rowSelected, 0);
+            String namaJenisBarang = tableModel.getValueAt(rowSelected, 1).toString();
+
+            Database db = new Database();
+            Connection con = db.getConnection();
+
+            JenisBarang jenisBarang = new JenisBarang(con);
+            jenisBarang.setId(id);
+            jenisBarang.setNamaJenisBarang(namaJenisBarang);
+
+            JenisBarangAddFrame frame = new JenisBarangAddFrame();
+            frame.setJenisBarang(jenisBarang);
+            frame.customShow();
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Pilih data",
+                    "Pesan",
+                    JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btUbahActionPerformed
 
     private void btHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btHapusActionPerformed
