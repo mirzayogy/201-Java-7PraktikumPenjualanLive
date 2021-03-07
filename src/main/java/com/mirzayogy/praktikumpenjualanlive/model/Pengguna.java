@@ -64,6 +64,28 @@ public class Pengguna {
         
         return pengguna;
     }
+    
+    public boolean ubahpassword(){
+        boolean hasil = false;
+        
+        String updateSQL = "UPDATE pengguna SET password = ? WHERE id = ?";
+        
+        String md5Password = MD5.getMd5(this.password);
+        
+        PreparedStatement ps;
+        try {
+            ps = this.connection.prepareStatement(updateSQL);
+            ps.setString(1, md5Password);
+            ps.setInt(2,this.id);
+            ps.execute();
+            hasil = true;
+        } catch (SQLException ex) {
+            System.out.println("Gagal ubah password");
+        }
+
+        
+        return hasil;
+    }
 
     public Connection getConnection() {
         return connection;
