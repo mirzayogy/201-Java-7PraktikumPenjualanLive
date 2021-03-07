@@ -48,6 +48,11 @@ public class JenisBarangAddFrame extends CustomFrame
         btBatal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(102, 16, 242));
 
@@ -139,16 +144,36 @@ public class JenisBarangAddFrame extends CustomFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSimpanActionPerformed
-        // TODO add your handling code here:
+        boolean tambahData = jenisBarang == null;
+
+        if (!dataKosong()) {
+            if (tambahData) {
+                simpanTambah();
+            } else {
+                simpanUbah();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Lengkapi data");
+        }
     }//GEN-LAST:event_btSimpanActionPerformed
 
     private void btBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBatalActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btBatalActionPerformed
 
     private void tfIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfIdActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        if (jenisBarang != null) {
+        String id = String.valueOf(jenisBarang.getId());
+        String namaJenisBarang = jenisBarang.getNamaJenisBarang();
+
+        tfId.setText(id);
+        tfNamaJenisBarang.setText(namaJenisBarang);
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
